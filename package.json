@@ -1,0 +1,15 @@
+{
+  "name": "smartcare-reminder",
+  "version": "1.0.0",
+  "description": "SmartCare Reminder - Healthcare Assistant for Elderly",
+  "scripts": {
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "start-backend": "cd backend && npm start",
+    "start-frontend": "cd frontend && npm start",
+    "dev": "npx concurrently \"npm run start-backend\" \"npm run start-frontend\"",
+    "test-setup": "node test-simple.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
