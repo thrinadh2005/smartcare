@@ -5,7 +5,7 @@
   "scripts": {
     "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
     "start": "cd backend && npm start",
-    "build": "cd frontend && npm install && npm run build",
+    "build": "npm install && cd backend && npm install && cd ../frontend && npm install && npm run build",
     "dev": "npx concurrently \"npm run start-backend\" \"npm run start-frontend\"",
     "test-setup": "node test-simple.js"
   },

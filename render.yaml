@@ -2,7 +2,7 @@ services:
   - type: web
     name: smartcare-app
     env: node
-    buildCommand: npm run build && cd backend && npm install
+    buildCommand: npm run build
     startCommand: npm start
     envVars:
       - key: MONGODB_URI
