@@ -1,32 +1,17 @@
 services:
-  # Backend service
   - type: web
-    name: smartcare-backend
+    name: smartcare-app
     env: node
-    rootDir: backend
-    buildCommand: npm install
+    buildCommand: npm run build && cd backend && npm install
     startCommand: npm start
     envVars:
       - key: MONGODB_URI
-        sync: false # Set this in Render dashboard
+        sync: false
       - key: JWT_SECRET
-        sync: false # Set this in Render dashboard
+        sync: false
       - key: PORT
         value: 5050
       - key: NODE_ENV
         value: production
-
-  # Frontend service
-  - type: web
-    name: smartcare-frontend
-    env: static
-    rootDir: frontend
-    buildCommand: npm install && npm run build
-    publishPath: build
-    envVars:
       - key: REACT_APP_API_URL
-        value: https://smartcare-backend.onrender.com/api # Update this after backend deployment
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+        value: /api

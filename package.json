@@ -4,8 +4,8 @@
   "description": "SmartCare Reminder - Healthcare Assistant for Elderly",
   "scripts": {
     "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
-    "start-backend": "cd backend && npm start",
-    "start-frontend": "cd frontend && npm start",
+    "start": "cd backend && npm start",
+    "build": "cd frontend && npm install && npm run build",
     "dev": "npx concurrently \"npm run start-backend\" \"npm run start-frontend\"",
     "test-setup": "node test-simple.js"
   },
