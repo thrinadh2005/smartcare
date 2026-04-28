@@ -45,5 +45,6 @@ In the Render Blueprint setup screen, you will need to provide values for:
 
 ## Security & Maintenance
 - The app uses `helmet` for security headers and `express-rate-limit` to prevent abuse.
+- `app.set('trust proxy', 1)` is enabled in the backend to ensure rate limiting works correctly on Render.
 - Ensure you never commit your actual `.env` file to GitHub.
 - Use Render's "Environment Variables" section to manage secrets securely.
