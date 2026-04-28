@@ -12,7 +12,7 @@ services:
       - key: JWT_SECRET
         sync: false # Set this in Render dashboard
       - key: PORT
-        value: 5000
+        value: 5050
       - key: NODE_ENV
         value: production
 

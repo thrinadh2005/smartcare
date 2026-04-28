@@ -7,6 +7,7 @@ This project is configured for easy deployment on **Render** using the included 
 1.  A **GitHub** account with this repository pushed.
 2.  A **MongoDB Atlas** account for your production database.
 3.  A **Render** account.
+4.  **Local Env**: Backend on port 5050, Frontend on port 3000.
 
 ## Deployment Steps
 
