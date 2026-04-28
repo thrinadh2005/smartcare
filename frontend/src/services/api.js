@@ -40,6 +40,7 @@ api.interceptors.response.use(
 export const authAPI = {
   signup: (userData) => api.post('/auth/signup', userData),
   login: (credentials) => api.post('/auth/login', credentials),
+  updateProfile: (userData) => api.put('/auth/profile', userData),
 };
 
 // Medicine APIs

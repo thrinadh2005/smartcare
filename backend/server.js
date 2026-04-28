@@ -18,6 +18,13 @@ const Medicine = require('./models/Medicine');
 const Appointment = require('./models/Appointment');
 const Product = require('./models/Product');
 
+// Import email service
+const { 
+  sendMedicineReminder, 
+  sendExpiryAlert, 
+  sendAppointmentReminder 
+} = require('./utils/emailService');
+
 const app = express();
 const PORT = process.env.PORT || 5050;
 
@@ -101,9 +108,17 @@ async function checkMedicineReminders() {
     'dosageTimes.time': currentTime 
   }).populate('userId', 'name email');
 
-  medicines.forEach(medicine => {
+  for (const medicine of medicines) {
     console.log(`Medicine reminder for ${medicine.userId.name}: ${medicine.name} at ${currentTime}`);
-  });
+    if (medicine.userId.email) {
+      await sendMedicineReminder(
+        medicine.userId.email,
+        medicine.userId.name,
+        medicine.name,
+        currentTime
+      );
+    }
+  }
 }
 
 // Check expiry alerts and update statuses
@@ -131,9 +146,17 @@ async function checkExpiryAlerts() {
     status: { $in: ['Active', 'Expiring Soon'] }
   }).populate('userId', 'name email');
 
-  expiringProducts.forEach(product => {
+  for (const product of expiringProducts) {
     console.log(`Expiry alert for ${product.userId.name}: ${product.name} expires on ${product.expiryDate}`);
-  });
+    if (product.userId.email) {
+      await sendExpiryAlert(
+        product.userId.email,
+        product.userId.name,
+        product.name,
+        product.expiryDate
+      );
+    }
+  }
 }
 
 // Check appointment reminders
@@ -146,9 +169,18 @@ async function checkAppointmentReminders() {
     status: 'Upcoming'
   }).populate('userId', 'name email');
 
-  appointments.forEach(appointment => {
+  for (const appointment of appointments) {
     console.log(`Appointment reminder for ${appointment.userId.name}: Dr. ${appointment.doctorName} on ${appointment.date}`);
-  });
+    if (appointment.userId.email) {
+      await sendAppointmentReminder(
+        appointment.userId.email,
+        appointment.userId.name,
+        appointment.doctorName,
+        appointment.date,
+        appointment.time
+      );
+    }
+  }
 }
 
 // Monthly doctor reminder - Check daily at 9 AM

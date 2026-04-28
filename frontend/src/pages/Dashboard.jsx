@@ -6,7 +6,8 @@ import {
   ClockIcon,
   SpeakerWaveIcon,
   ArrowRightOnRectangleIcon,
-  PrinterIcon
+  PrinterIcon,
+  UserCircleIcon
 } from '@heroicons/react/24/outline';
 import { medicineAPI, appointmentAPI, productAPI } from '../services/api';
 
@@ -130,6 +131,13 @@ const Dashboard = () => {
             <button onClick={handlePrint} className="btn btn-secondary flex items-center gap-2">
               <PrinterIcon className="h-5 w-5" />
               <span className="hidden sm:inline">Print</span>
+            </button>
+            <button 
+              onClick={() => navigate('/profile')}
+              className="btn btn-secondary flex items-center gap-2"
+            >
+              <UserCircleIcon className="h-5 w-5" />
+              <span className="hidden sm:inline">Profile</span>
             </button>
             <button 
               onClick={() => {
